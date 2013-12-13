@@ -9,6 +9,6 @@
 #ifndef ServeurWeb_lib_h
 #define ServeurWeb_lib_h
 
-
+void envoyerPage();
 
 #endif

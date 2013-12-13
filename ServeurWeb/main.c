@@ -17,26 +17,28 @@
 void *clientThreadFunction(void *data){
     int sock = *(int *)data;
     char buffer[1023];
+    char *temp;
+    char *fichier = NULL;
+    int i = 0;
+
+    //Requête HTTP
+    eclille_receiveFromSocket(sock, buffer, sizeof(buffer));
     
-    while(1){
-        //Requête HTTP
-        eclille_receiveFromSocket(sock, buffer, sizeof(buffer));
-        printf("%s", buffer);
-        
-        //Récupération du fichier demandé
-        char *lignes =  strtok(buffer, "\r\n");
-        while (lignes != NULL) {
-            printf("%s", lignes);
-        }
-                
-        eclille_closeConnection(sock);
-        pthread_exit(NULL);
-    }
+
+    //Nom du fichier à ouvrir
+    temp = buffer + 4;
+    fichier = strtok(temp, " ");
+    
+    fprintf(stderr, "%s\n", &fichier[0]);
+    
+    //Fermer la connexion et le thread
+    eclille_closeConnection(sock);
+    pthread_exit(NULL);
 }
 
 int main(int argc, char* argv[])
 {
-    char *server_ip = "0.0.0.0";
+    char *server_ip = "127.0.0.1";
     int server_port = 8081;
     
     int sock = eclille_createSocket();
@@ -53,7 +55,4 @@ int main(int argc, char* argv[])
         }
     };
     
-    
-    
-    return 0;
 }
