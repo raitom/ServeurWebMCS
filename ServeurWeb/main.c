@@ -6,30 +6,33 @@
 //  Copyright (c) 2013 Thomas Geselle. All rights reserved.
 //
 
-#include <stdio.h>
-#include "eclille.h"
-#include <pthread.h>
-#include <string.h>
-#include <stdlib.h>
-#include "lib.h"
-
+#include "main.h"
 
 void *clientThreadFunction(void *data){
     int sock = *(int *)data;
     char buffer[1023];
-    char *temp;
     char *fichier = NULL;
-    int i = 0;
 
     //Requête HTTP
     eclille_receiveFromSocket(sock, buffer, sizeof(buffer));
     
 
     //Nom du fichier à ouvrir
-    temp = buffer + 4;
-    fichier = strtok(temp, " ");
+    fichier = malloc(sizeof(buffer));
+    nomFichier(fichier, buffer);
+    fprintf(stderr, "\nFichier : %s \n", fichier);
     
-    fprintf(stderr, "%s\n", &fichier[0]);
+    //Vérifier si le fichier existe
+    bool existe = fichierExiste(fichier);
+    
+    if (existe == true) {
+        //Envois du fichier demandé
+        send_file(sock, NULL, fichier);
+        
+    }else{
+        //Le fichier n'existe pas, erreur 404
+        send_not_found(sock);
+    }
     
     //Fermer la connexion et le thread
     eclille_closeConnection(sock);

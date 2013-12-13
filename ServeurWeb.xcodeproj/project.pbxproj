@@ -34,6 +34,7 @@
 		7E11EF5E1856243C007A402D /* eclille.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eclille.h; sourceTree = "<group>"; };
 		7E11EF6018562632007A402D /* lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		7E11EF621856263C007A402D /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		7E3EDF45185BADB5007CDB87 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +73,7 @@
 				7E11EF5618562421007A402D /* ServeurWeb.1 */,
 				7E11EF6018562632007A402D /* lib.c */,
 				7E11EF621856263C007A402D /* lib.h */,
+				7E3EDF45185BADB5007CDB87 /* main.h */,
 			);
 			path = ServeurWeb;
 			sourceTree = "<group>";
@@ -237,6 +239,7 @@
 				7E11EF5C18562421007A402D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
